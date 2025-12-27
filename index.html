@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Bestie 🎂</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Poppins",system-ui,sans-serif}
+
+/* ===== BODY & BACKGROUND ===== */
+body{
+  min-height:100vh;
+  background:radial-gradient(circle at top,#ffdde1,#ee9ca7,#3a1c71);
+  color:#fff;
+  overflow:hidden;
+  position:relative;
+}
+
+/* ===== NAME INPUT SCREEN ===== */
+#nameScreen{
+  position:fixed;inset:0;background:rgba(0,0,0,.7);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:10;
+}
+#nameScreen h2{margin-bottom:20px;font-size:2rem;text-align:center}
+#nameInput{padding:12px 18px;font-size:1rem;border-radius:8px;border:none;outline:none;width:250px;margin-bottom:16px}
+#startBtn{padding:10px 20px;border:none;border-radius:999px;background:linear-gradient(135deg,#ff9a9e,#fecfef);color:#4a148c;font-size:.95rem;cursor:pointer}
+
+/* ===== FLOATING BALLOONS ===== */
+.balloon{
+  position:absolute;bottom:-120px;width:60px;height:80px;
+  border-radius:50% 50% 45% 45%;
+  animation:floatUp linear infinite;
+  opacity:.85;
+  z-index:0;
+}
+.balloon::after{
+  content:"";position:absolute;bottom:-25px;left:50%;
+  width:2px;height:30px;background:rgba(255,255,255,.7);
+}
+@keyframes floatUp{to{transform:translateY(-120vh)}}
+
+/* ===== PAGE SYSTEM ===== */
+.scene{perspective:1200px;position:relative;min-height:100vh;display:none;}
+.page{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:transform .8s ease,opacity .5s ease}
+.hidden{opacity:0;pointer-events:none}
+.flip-out{transform:rotateY(-90deg)}
+.flip-in{transform:rotateY(0deg)}
+
+/* ===== CARD STYLES ===== */
+.container,.card{
+  width:min(480px,95vw);
+  background:rgba(0,0,0,.22);
+  border-radius:26px;
+  padding:30px 22px;
+  text-align:center;
+  backdrop-filter:blur(14px);
+  box-shadow:0 18px 45px rgba(0,0,0,.45);
+  z-index:2;
+  position:relative;
+}
+h1{font-size:2.2rem;background:linear-gradient(90deg,#ffeb3b,#ff9800,#ff4081);-webkit-background-clip:text;color:transparent}
+.subtitle{letter-spacing:.2em;font-size:.85rem;margin:8px 0 14px}
+.name{color:#ffe082;font-size:1.2rem;font-weight:600;margin-bottom:14px}
+.message,.wish-text{font-size:.95rem;line-height:1.7;margin-bottom:16px}
+.typed{border-right:2px solid #fff;white-space:nowrap;overflow:hidden;min-height:22px;margin-bottom:18px}
+
+/* ===== BUTTONS ===== */
+.btn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+button{
+  padding:10px 18px;border:none;border-radius:999px;
+  background:linear-gradient(135deg,#ff9a9e,#fecfef);
+  color:#4a148c;font-size:.85rem;cursor:pointer;
+}
+.secondary{background:transparent;border:1px solid rgba(255,255,255,.6);color:#fff}
+
+/* ===== CONFETTI ===== */
+.confetti{position:fixed;top:-20px;width:8px;height:14px;border-radius:2px;animation:fall 4s linear forwards;z-index:999}
+@keyframes fall{to{transform:translateY(110vh) rotate(540deg)}}
+
+/* ===== REVEAL SLIDES ===== */
+.reveal-container{display:flex;flex-direction:column;align-items:center;gap:12px;}
+.arrow-btn{
+  padding:8px 16px;border:none;border-radius:999px;
+  background:linear-gradient(135deg,#ff9a9e,#fecfef);color:#4a148c;font-size:.85rem;cursor:pointer;margin:8px;
+}
+.photo-display img{
+  max-width:90vw;
+  max-height:70vh;
+  border-radius:16px;
+  box-shadow:0 10px 20px rgba(0,0,0,.45);
+}
+.option-btns{display:flex;gap:20px;justify-content:center;margin-top:12px;}
+</style>
+</head>
+<body>
+
+<!-- NAME SCREEN -->
+<div id="nameScreen">
+  <h2>Enter your name 💖</h2>
+  <input type="text" id="nameInput" placeholder="Your name here">
+  <button id="startBtn">Start 🎉</button>
+</div>
+
+<div class="scene">
+
+<!-- MAIN PAGE -->
+<div class="page flip-in" id="mainPage">
+  <div class="container">
+    <h1>Happy Birthday</h1>
+    <div class="subtitle">to my best friend</div>
+    <div class="name" id="friendName">Dear Bestie 💖</div>
+    <p class="message">You’re not just a friend — you’re my comfort, my supporter, my favorite one, and you are my bestest friend......💗💖💫</p>
+    <p class="typed" id="typedLine"></p>
+    <div class="btn-row">
+      <button id="surpriseBtn">See Your Surprise 🎁</button>
+      <button class="secondary" id="wishBtn">Open My Wish 💌</button>
+    </div>
+  </div>
+</div>
+
+<!-- SURPRISE PAGE -->
+<div class="page hidden" id="wishPage">
+  <div class="card reveal-container">
+    <h2>🎉 My Wish ! 🎉</h2>
+    <p class="message" style="font-size:1rem;color:#ffd740;line-height:1.5;">
+      You are amazing, and I wish you endless happiness and laughter today and always! 💖<br>
+      Never feel alone when you are sad, just text me. I am not here to share good things only, I am here to share everything.....<br>
+      Just call me when you are sad; if I am not answer, text me. I'm here for you.......
+    </p>
+    <button class="secondary" id="backFromWish">← Back</button>
+  </div>
+</div>
+
+<!-- WISH PAGE -->
+<div class="page hidden" id="surprisePage">
+  <div class="card reveal-container">
+    <h2>Our Memories 📸</h2>
+    <p class="wish-text">No matter where life takes us, I hope you always remember this — Our cute memories from me💖</p>
+    <p>Once again Happy B'day........💗💖</p>
+    <h3 id="memoriesQuestion" style="display:none;">Do you want to see your memories?</h3>
+    <div class="option-btns" id="memoriesOptions" style="display:none;">
+      <button id="revealBtn">Reveal</button>
+      <button id="noThanksBtn">No Thanks</button>
+    </div>
+    <button class="secondary" id="backFromSurprise">← Back</button>
+  </div>
+</div>
+
+<!-- MEMORIES REVEAL PAGE -->
+<div class="page hidden" id="memoriesRevealPage">
+  <div class="card reveal-container">
+    <div class="photo-display" id="photoDisplay"></div>
+    <div class="option-btns">
+      <button class="arrow-btn" id="prevPhoto">← Prev</button>
+      <button class="arrow-btn" id="nextPhoto">Next →</button>
+    </div>
+    <button class="secondary" id="backFromReveal">← Back</button>
+  </div>
+</div>
+
+</div>
+
+<script>
+/* START AFTER NAME */
+const nameScreen=document.getElementById("nameScreen"),
+      nameInput=document.getElementById("nameInput"),
+      startBtn=document.getElementById("startBtn"),
+      scene=document.querySelector(".scene");
+
+startBtn.onclick=()=>{
+  const name=nameInput.value.trim() || "Bestie";
+  document.getElementById("friendName").textContent="Dear "+name+" 💖";
+  nameScreen.style.display="none";
+  scene.style.display="block";
+  initBalloons();
+  typeWriter();
+  initPhotos();
+};
+
+/* TYPEWRITER */
+const lines=["You make ordinary days feel magical.","Thank you for being you — always."];
+let li=0,ci=0,typed=document.getElementById("typedLine");
+function typeWriter(){(function type(){if(ci<lines[li].length){typed.textContent+=lines[li][ci++];setTimeout(type,45)}
+else{setTimeout(()=>{typed.textContent="";ci=0;li=(li+1)%lines.length;type()},2000)}})()}
+
+/* PAGE FLIP */
+const mainPage=document.getElementById("mainPage"),
+      surprisePage=document.getElementById("surprisePage"),
+      wishPage=document.getElementById("wishPage"),
+      memoriesRevealPage=document.getElementById("memoriesRevealPage"),
+      surpriseBtn=document.getElementById("surpriseBtn"),
+      wishBtn=document.getElementById("wishBtn"),
+      backFromSurprise=document.getElementById("backFromSurprise"),
+      backFromWish=document.getElementById("backFromWish"),
+      revealBtn=document.getElementById("revealBtn"),
+      noThanksBtn=document.getElementById("noThanksBtn"),
+      backFromReveal=document.getElementById("backFromReveal"),
+      memoriesQuestion=document.getElementById("memoriesQuestion"),
+      memoriesOptions=document.getElementById("memoriesOptions");
+
+function flip(from,to){
+  from.classList.add("flip-out");
+  setTimeout(()=>{
+    from.classList.add("hidden");
+    from.classList.remove("flip-out");
+    to.classList.remove("hidden");
+    to.classList.add("flip-in");
+  },400);
+}
+
+// Surprise button
+surpriseBtn.onclick=()=>{
+  flip(mainPage,surprisePage);
+  // Show question + options only for Surprise
+  setTimeout(()=>{
+    memoriesQuestion.style.display="block";
+    memoriesOptions.style.display="flex";
+  },800);
+};
+
+// Wish button
+wishBtn.onclick=()=>flip(mainPage,wishPage);
+
+// Back buttons
+backFromSurprise.onclick=()=>flip(surprisePage,mainPage);
+backFromWish.onclick=()=>flip(wishPage,mainPage);
+noThanksBtn.onclick=()=>flip(surprisePage,mainPage);
+revealBtn.onclick=()=>flip(surprisePage,memoriesRevealPage);
+backFromReveal.onclick=()=>flip(memoriesRevealPage,surprisePage);
+
+/* FLOATING BALLOONS */
+function initBalloons(){
+  for(let i=0;i<12;i++){
+    const b=document.createElement("div");
+    b.className="balloon";
+    const colors=["#ff80ab","#ffd740","#82b1ff","#b388ff","#69f0ae"];
+    b.style.background=colors[Math.floor(Math.random()*colors.length)];
+    b.style.left=Math.random()*100+"vw";
+    b.style.animationDuration=(10+Math.random()*8)+"s";
+    b.style.animationDelay=Math.random()*5+"s";
+    document.body.appendChild(b);
+  }
+}
+
+/* PHOTOS SLIDESHOW */
+let photos=[],currentIndex=0;
+function initPhotos(){
+  photos=[
+    "https://i.postimg.cc/3r0smL7h/photo1.jpg",
+    "https://i.postimg.cc/TY5W6fQv/photo2.jpg",
+    "https://i.postimg.cc/Zq5f2r2t/photo3.jpg"
+  ];
+  showPhoto(currentIndex);
+}
+function showPhoto(index){
+  const display=document.getElementById("photoDisplay");
+  display.innerHTML=`<img src="${photos[index]}" alt="Memory ${index+1}">`;
+}
+document.getElementById("prevPhoto").onclick=()=>{
+  currentIndex=(currentIndex-1+photos.length)%photos.length;
+  showPhoto(currentIndex);
+};
+document.getElementById("nextPhoto").onclick=()=>{
+  currentIndex=(currentIndex+1)%photos.length;
+  showPhoto(currentIndex);
+};
+</script>
+</body>
+</html>
