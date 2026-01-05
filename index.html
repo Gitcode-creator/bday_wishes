@@ -109,7 +109,7 @@ button{
   <div class="container">
     <h1>Happy Birthday</h1>
     <div class="subtitle">to my best friend</div>
-    <div class="name" id="friendName">Dear Bestie 💖</div>
+    <div class="name" id="friendName">Dear Friend 💖</div>
     <p class="message">You’re not just a friend — you’re my comfort, my supporter, my favorite one, and you are my bestest friend......💗💖💫</p>
     <p class="typed" id="typedLine"></p>
     <div class="btn-row">
@@ -125,8 +125,8 @@ button{
     <h2>🎉 My Wish ! 🎉</h2>
     <p class="message" style="font-size:1rem;color:#ffd740;line-height:1.5;">
       You are amazing, and I wish you endless happiness and laughter today and always! 💖<br>
-      Never feel alone when you are sad, just text me. I am not here to share good things only, I am here to share everything.....<br>
-      Just call me when you are sad; if I am not answer, text me. I'm here for you.......
+      Never feel alone when you are sad, just text me. I am not here to share good things only, I am here to share bad tooo.....<br>
+      JUst remember I am always there for you My Friend..........😌🧿
     </p>
     <button class="secondary" id="backFromWish">← Back</button>
   </div>
@@ -138,9 +138,9 @@ button{
     <h2>Our Memories 📸</h2>
     <p class="wish-text">No matter where life takes us, I hope you always remember this — Our cute memories from me💖</p>
     <p>Once again Happy B'day........💗💖</p>
-    <h3 id="memoriesQuestion" style="display:none;">Do you want to see your memories?</h3>
+    <h3 id="memoriesQuestion" style="display:none;">Do you want to see your Memories?</h3>
     <div class="option-btns" id="memoriesOptions" style="display:none;">
-      <button id="revealBtn">Reveal</button>
+      <button id="revealBtn">Reveal..🫣</button>
       <button id="noThanksBtn">No Thanks</button>
     </div>
     <button class="secondary" id="backFromSurprise">← Back</button>
@@ -179,7 +179,7 @@ startBtn.onclick=()=>{
 };
 
 /* TYPEWRITER */
-const lines=["You make ordinary days feel magical.","Thank you for being you — always."];
+const lines=["You make ordinary days feel magical.","Thank you for being my Friend.","Thanks potti, for coming into my life."];
 let li=0,ci=0,typed=document.getElementById("typedLine");
 function typeWriter(){(function type(){if(ci<lines[li].length){typed.textContent+=lines[li][ci++];setTimeout(type,45)}
 else{setTimeout(()=>{typed.textContent="";ci=0;li=(li+1)%lines.length;type()},2000)}})()}
