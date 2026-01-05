@@ -169,7 +169,7 @@ const nameScreen=document.getElementById("nameScreen"),
       scene=document.querySelector(".scene");
 
 startBtn.onclick=()=>{
-  const name=nameInput.value.trim() || "Bestie";
+  const name=nameInput.value.trim() || "Friend...";
   document.getElementById("friendName").textContent="Dear "+name+" 💖";
   nameScreen.style.display="none";
   scene.style.display="block";
@@ -179,7 +179,7 @@ startBtn.onclick=()=>{
 };
 
 /* TYPEWRITER */
-const lines=["You make ordinary days feel magical.","Thank you for being my Friend.","Thanks potti, for coming into my life."];
+const lines=["You make ordinary days feel magical.","Thank you for being my Friend.","Thanks potti,for coming into my life."];
 let li=0,ci=0,typed=document.getElementById("typedLine");
 function typeWriter(){(function type(){if(ci<lines[li].length){typed.textContent+=lines[li][ci++];setTimeout(type,45)}
 else{setTimeout(()=>{typed.textContent="";ci=0;li=(li+1)%lines.length;type()},2000)}})()}
